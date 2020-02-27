@@ -1,0 +1,12 @@
+.parent{
+  display: table;
+  height: 100%;
+  width: 100%;
+}
+
+.left-cell, .right-cell{
+  display: table-cell;
+  vertical-align: top;
+  height: 100%;
+  width: 50%;
+}

@@ -1,0 +1,25 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+
+```{r}
+library(readxl)
+library(dplyr)
+library(wordcloud2)
+library(htmlwidgets)
+
+mydata = read_excel("C:/user/document/Temple University/DTA101/week05/itunes.xlsx", sheet = "cleaned")
+```
+
+*Most played genre
+```{r}
+mygenre = data.frame(genre = mydata$genre, plays = mydata$plays)
+mygenre = mygenre %>% group_by(genre) %>% summarise(plays = sum(plays))
+mygenre = mygenre[order(mygenre$plays, decreasing = TRUE),]
+
+head(mygenre, 10)
+wc1 = wordcloud2(mygenre, size = 0.8, shuffle = FALSE)
+saveWidget(wc1, "wc1.html" ,selfcontained = FALSE)
+```
